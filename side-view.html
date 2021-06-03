@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phone</title>
+    <style>
+      *,
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+        transition: 2s all;
+      }
+
+      img {
+        position: absolute;
+        width: 280px;
+        height: 540px;
+        cursor: none;
+        pointer-events: none;
+      }
+
+      iframe {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 94%;
+        height: 98%;
+        z-index: -999;
+        border-radius: 44px;
+      }
+      .wrapper {
+        height: 100vh;
+        width: 100vw;
+      }
+
+      .phone {
+        width: 280px;
+        height: 540px;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: rotateY(-40deg) rotateX(0deg) rotateZ(0deg)
+          translate(-50%, -50%);
+        transform-style: preserve-3d;
+      }
+
+      .phone > div {
+        backface-visibility: hidden;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+
+      .front {
+        border-radius: 14px;
+        transform: translateZ(0px);
+      }
+
+      .back {
+        transform: translateZ(-16px) rotateY(180deg);
+        border-radius: 14px;
+      }
+
+      div.top {
+        top: 0;
+        height: 16px;
+        transform: rotateX(90deg) translateY(-8px) translateZ(8px);
+      }
+
+      div.bottom {
+        bottom: 0;
+        height: 16px;
+        transform: rotateX(270deg) translateY(8px) translateZ(8px);
+      }
+
+      div.bottom img {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200px;
+      }
+
+      div.left {
+        left: 0;
+        width: 16px;
+        transform: rotateY(270deg) translateX(-10px) translateZ(6px);
+        transform-style: preserve-3d;
+      }
+
+      div.left img {
+        top: 50%;
+        height: 490px;
+        transform: translateY(-50%);
+      }
+
+      div.right {
+        right: 0;
+        width: 16px;
+        transform: rotateY(90deg) translateX(7px) translateZ(8px);
+      }
+
+      div.right img,
+      div.left img {
+        width: 20px;
+      }
+
+      div.bottom img,
+      div.top img {
+        left: 50%;
+        transform: translateX(-50%);
+        height: 16px;
+        width: 200px;
+      }
+
+      .controls {
+        position: absolute;
+        top: 60px;
+        right: 20px;
+      }
+
+      .controls > div {
+        text-align: center;
+        width: 160px;
+        padding: 10px 0;
+        margin: 5px 0;
+        background-color: rgb(209, 209, 209);
+        font-family: "Courier New", Courier, monospace;
+        cursor: pointer;
+      }
+
+      .controls > div:hover {
+        background-color: rgb(194, 194, 194);
+      }
+
+      .controls > div:active {
+        background-color: grey;
+      }
+
+      div.left > div {
+        position: absolute;
+        background-size: cover;
+      }
+
+      .border-round-top-0 {
+        top: 0;
+        width: 16px;
+        height: 10px;
+        background-image: url(border.png);
+        background-size: cover;
+        transform: rotateX(11.25deg) translateZ(-6px) translateX(2px)
+          translateY(20px);
+      }
+      .border-round-top-1 {
+        top: 0;
+        width: 16px;
+        height: 9px;
+        background-image: url(border.png);
+        transform: rotateX(22.25deg) translateZ(-10px) translateX(2px)
+          translateY(10px);
+      }
+      .border-round-top-2 {
+        top: 0;
+        width: 16px;
+        height: 10px;
+        background-image: url(border.png);
+        transform: rotateX(32.25deg) translateZ(-11px) translateX(2px)
+          translateY(0px);
+      }
+      .border-round-top-3 {
+        top: 0;
+        width: 16px;
+        height: 10px;
+        background-image: url(border.png);
+        transform: rotateX(42.25deg) translateZ(-12px) translateX(2px)
+          translateY(-6px);
+      }
+      .border-round-top-4 {
+        top: 0;
+        width: 16px;
+        height: 10px;
+        background-image: url(border.png);
+        transform: rotateX(52.25deg) translateZ(-9px) translateX(2px)
+          translateY(-14px);
+      }
+
+      .border-round-bottom-0 {
+        bottom: 0;
+        width: 16px;
+        height: 10px;
+        background-image: url(border.png);
+        background-size: cover;
+        transform: rotateX(-11.25deg) translateZ(-6px) translateX(2px)
+          translateY(-20px);
+      }
+      .border-round-bottom-1 {
+        bottom: 0;
+        width: 16px;
+        height: 9px;
+        background-image: url(border.png);
+        transform: rotateX(-22.25deg) translateZ(-14px) translateX(2px)
+          translateY(-10px);
+      }
+      .border-round-bottom-2 {
+        bottom: 0;
+        width: 16px;
+        height: 10px;
+        background-image: url(border.png);
+        transform: rotateX(-32.25deg) translateZ(-11px) translateX(2px)
+          translateY(-7px);
+      }
+      .border-round-bottom-3 {
+        bottom: 0;
+        width: 16px;
+        height: 10px;
+        background-image: url(border.png);
+        transform: rotateX(-42.25deg) translateZ(-12px) translateX(0px)
+          translateY(5px);
+      }
+      .border-round-bottom-4 {
+        bottom: 0;
+        width: 16px;
+        height: 10px;
+        background-image: url(border.png);
+        transform: rotateX(-52.25deg) translateZ(-10px) translateX(2px)
+          translateY(16px);
+      }
+
+      div.right {
+        transform-style: preserve-3d;
+      }
+      div.right > div {
+        position: absolute;
+      }
+
+      .rborder-round-bottom-0 {
+        bottom: 0;
+        width: 16px;
+        height: 10px;
+        background-image: url(border.png);
+        background-size: cover;
+        transform: rotateX(-11.25deg) translateZ(-6px) translateX(0px)
+          translateY(-20px);
+      }
+      .rborder-round-bottom-1 {
+        bottom: 0;
+        width: 16px;
+        height: 9px;
+        background-image: url(border.png);
+        transform: rotateX(-22.25deg) translateZ(-14px) translateX(0px)
+          translateY(-10px);
+      }
+      .rborder-round-bottom-2 {
+        bottom: 0;
+        width: 16px;
+        height: 10px;
+        background-image: url(border.png);
+        transform: rotateX(-32.25deg) translateZ(-11px) translateX(0px)
+          translateY(-7px);
+      }
+      .rborder-round-bottom-3 {
+        bottom: 0;
+        width: 16px;
+        height: 10px;
+        background-image: url(border.png);
+        transform: rotateX(-42.25deg) translateZ(-12px) translateX(0px)
+          translateY(5px);
+      }
+      .rborder-round-bottom-4 {
+        bottom: 0;
+        width: 16px;
+        height: 10px;
+        background-image: url(border.png);
+        transform: rotateX(-52.25deg) translateZ(-10px) translateX(0px)
+          translateY(16px);
+      }
+
+      div.right img {
+        top: 50%;
+        height: 490px;
+        transform: translateY(-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <section class="wrapper">
+      <div class="phone">
+        <div class="front">
+          <img src="front.png" alt="" /><iframe
+            src="https://previewer.adalo.com/preview/1890dbc3-274b-4245-bec4-895f9a44a8c1?os=ios&offset_bottom=34&offset_top=44&w=375&h=812"
+            frameborder="0"
+          ></iframe>
+        </div>
+        <div class="back"><img src="back.png" alt="" /></div>
+        <div class="left">
+          <img src="left.png" alt="" />
+          <div class="border-round-top-0"></div>
+          <div class="border-round-top-1"></div>
+          <div class="border-round-top-2"></div>
+          <div class="border-round-top-3"></div>
+          <div class="border-round-top-4"></div>
+          <div class="border-round-bottom-0"></div>
+          <div class="border-round-bottom-1"></div>
+          <div class="border-round-bottom-2"></div>
+          <div class="border-round-bottom-3"></div>
+          <div class="border-round-bottom-4"></div>
+        </div>
+        <div class="right">
+          <img src="right.png" alt="" />
+          <div class="rborder-round-bottom-0"></div>
+          <div class="rborder-round-bottom-1"></div>
+          <div class="rborder-round-bottom-2"></div>
+          <div class="rborder-round-bottom-3"></div>
+          <div class="rborder-round-bottom-4"></div>
+        </div>
+        <div class="top"><img src="top.png" alt="" /></div>
+        <div class="bottom"><img src="bottom.png" alt="" /></div>
+      </div>
+    </section>
+  </body>
+</html>
