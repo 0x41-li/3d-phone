@@ -38,23 +38,18 @@
         border-radius: 34px;
         z-index: 998;
       }
+
       .wrapper {
-        height: 100vh;
-        width: 100vw;
-        perspective: 800px;
-        overflow: hidden;
+        display: block;
+        height: 900px;
+        perspective: 3000px;
       }
 
       .phone {
         width: 385px;
         height: 810px;
         position: relative;
-        top: 50%;
-        left: 54%;
-        transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg)
-          rotateZ(0deg) scale(0.6);
         transform-style: preserve-3d;
-        perspective: 10000px;
       }
 
       .phone > div {
@@ -132,10 +127,16 @@
         width: 360px;
       }
 
-      .controls {
+      .control-wrapper {
         position: absolute;
-        top: 60px;
-        right: 20px;
+        left: 10%;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .controls {
+        position: relative;
+        margin-top: 40px;
       }
 
       .controls > div {
@@ -176,22 +177,20 @@
       }
 
       .input-site {
-        position: absolute;
-        left: 10px;
-        top: 10px;
+        position: relative;
         padding: 10px 20px;
         border-radius: 8px;
-        width: 64vw;
         text-align: center;
       }
 
       .input-site span {
-        display: inline-block;
+        display: block;
         color: white;
         font-weight: bold;
         font-family: "open sans", Arial, Helvetica, sans-serif;
         letter-spacing: 2px;
         font-weight: 400;
+        margin-bottom: 10px;
       }
 
       .input-site input {
@@ -226,109 +225,6 @@
         background-color: #b9b9b9;
       }
 
-      @media screen and (max-width: 1440px) {
-        .phone {
-          top: 58%;
-        }
-
-        .input-site {
-          top: 30%;
-          left: 20px;
-          transform: translateY(-50%);
-          width: max-content;
-        }
-
-        .input-site span {
-          display: block;
-          margin-bottom: 10px;
-        }
-
-        .controls {
-          transform: none;
-          top: 40%;
-          left: 11%;
-          right: initial;
-        }
-
-        div.laying-down-view-transform {
-          top: 46%;
-          left: 90%;
-        }
-
-        div.front-view-transform {
-          left: 60%;
-        }
-
-        div.side-view-transform {
-          left: 70%;
-        }
-      }
-
-
-      @media screen and (max-width: 1200px) {
-        .input-site {
-          display: block;
-          top: 10px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 100vw;
-          font-size: 10px;
-          padding: 10px 5px;
-        }
-
-        .controls {
-          top:80px;
-          left: 50%;
-          transform: translateX(-50%);
-          text-align: center;
-        }
-
-        .input-site input {
-          width: 140px;
-        }
-
-        div.front-view-transform {
-          top: 80px;
-          left: 50%;
-          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg)
-            translate(-45%, -0%) scale(0.6);
-        }
-
-        div.laying-down-view-transform {
-          top: 180px;
-          left: 50%;
-          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
-            translate(20%, -40%) scale(0.8);
-        }
-
-        div.side-view-transform {
-          top: 120px;
-          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
-            translate(-130%, -4%) scale(0.75);
-        }
-      }
-
-      @media screen and (max-width: 640px) {
-        div.front-view-transform {
-          top: 80px;
-          left: 50%;
-          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg)
-            translate(-45%, -0%) scale(0.5);
-        }
-
-        div.laying-down-view-transform {
-          top: 180px;
-          left: 50%;
-          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
-            translate(20%, -40%) scale(0.5);
-        }
-
-        div.side-view-transform {
-          top: 120px;
-          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
-            translate(-100%, -4%) scale(0.65);
-        }
-      }
       .phone-size-controllers {
         position: absolute;
         top: 200px;
@@ -344,18 +240,24 @@
       }
 
       .front-view-transform {
-        transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg)
-          translate(-30%, -55%) scale(0.7);
+        top: calc(100px + 12px);
+        left: calc(60% + 28px);
+        transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
+          scale(1);
       }
 
       .laying-down-view-transform {
+        top: calc(40px + 12px);
+        left: calc(60% + 28px);
         transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
-          translate(62%, -90%) scale(1.2);
+          translate(0%, 0%) scale(1.2);
       }
 
       .side-view-transform {
-        transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
-          translate(-50%, -55%) scale(0.75);
+        top: calc(100px + 12px);
+        left: calc(60% + 28px);
+        transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
+          scale(1.05);
       }
 
       .corner {
@@ -432,19 +334,318 @@
         top: 593px;
         transform: rotateX(-88deg) translateZ(-534px) translateY(26px);
       }
+
+      @media screen and (max-width: 2000px) {
+        .front-view-transform {
+          top: calc(100px + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
+            scale(0.8);
+        }
+
+        .laying-down-view-transform {
+          top: calc(40px + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
+            translate(0%, 0%) scale(1);
+        }
+
+        .side-view-transform {
+          top: calc(100px + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
+            translate(0%, 0%) scale(0.85);
+        }
+      }
+
+      @media screen and (max-width: 1640px) {
+        .control-wrapper {
+          left: 10px;
+        }
+        .front-view-transform {
+          top: calc(100px + 6px);
+          left: calc(50% + 14px);
+          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
+            scale(0.6);
+        }
+
+        .laying-down-view-transform {
+          top: calc(40px + 6px);
+          left: calc(50% + 14px);
+          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
+            translate(0%, 0%) scale(0.7);
+        }
+
+        .side-view-transform {
+          top: calc(100px + 6px);
+          left: calc(50% + 14px);
+          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
+            translate(0%, 0%) scale(0.65);
+        }
+      }
+
+      @media screen and (max-width: 1100px) {
+        .control-wrapper {
+          top: 10px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 100vw;
+        }
+
+        .front-view-transform {
+          top: calc(120px + 6px);
+          left: calc(50% + 14px);
+          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg)
+            translate(-50%, 0%) scale(0.6);
+        }
+
+        .laying-down-view-transform {
+          top: calc(40px + 6px);
+          left: calc(50% + 14px);
+          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
+            translate(-74%, 0%) scale(0.7);
+        }
+
+        .side-view-transform {
+          top: calc(130px + 6px);
+          left: calc(50% + 14px);
+          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
+            translate(-70%, 0%) scale(0.65);
+        }
+      }
+
+      @media screen and (max-height: 960px) {
+        .wrapper {
+          height: 100vh;
+        }
+
+        .front-view-transform {
+          top: calc(50% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg)
+            translate(0%, -50%) scale(var(--scale-dynamic));
+        }
+
+        .laying-down-view-transform {
+          top: calc(0% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
+            translate(0%, 0%) scale(var(--scale-dynamic));
+        }
+
+        .side-view-transform {
+          top: calc(50% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
+            translate(0%, -50%) scale(var(--scale-dynamic));
+        }
+      }
+
+      @media screen and (max-height: 660px) {
+        .wrapper {
+          height: 100vh;
+        }
+
+        .front-view-transform {
+          top: calc(50% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg)
+            translate(0%, -50%) scale(var(--scale-dynamic));
+        }
+
+        .laying-down-view-transform {
+          top: calc(-10% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
+            translate(0%, 0%) scale(var(--scale-dynamic));
+        }
+
+        .side-view-transform {
+          top: calc(50% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
+            translate(0%, -50%) scale(var(--scale-dynamic));
+        }
+      }
+
+      @media screen and (max-height: 580px) {
+        .wrapper {
+          height: 100vh;
+        }
+
+        .front-view-transform {
+          top: calc(50% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg)
+            translate(0%, -50%) scale(var(--scale-dynamic));
+        }
+
+        .laying-down-view-transform {
+          top: calc(-20% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
+            translate(0%, 0%) scale(var(--scale-dynamic));
+        }
+
+        .side-view-transform {
+          top: calc(50% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
+            translate(0%, -50%) scale(var(--scale-dynamic));
+        }
+      }
+
+      @media screen and (max-height: 500px) {
+        .wrapper {
+          height: 100vh;
+        }
+
+        .front-view-transform {
+          top: calc(50% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg)
+            translate(0%, -50%) scale(var(--scale-dynamic));
+        }
+
+        .laying-down-view-transform {
+          top: calc(-34% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
+            translate(0%, 0%) scale(var(--scale-dynamic));
+        }
+
+        .side-view-transform {
+          top: calc(50% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
+            translate(0%, -50%) scale(var(--scale-dynamic));
+        }
+      }
+
+      @media screen and (max-height: 440px) {
+        .wrapper {
+          height: 100vh;
+        }
+
+        .front-view-transform {
+          top: calc(50% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg)
+            translate(0%, -50%) scale(var(--scale-dynamic));
+        }
+
+        .laying-down-view-transform {
+          top: calc(-40% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
+            translate(0%, 0%) scale(var(--scale-dynamic));
+        }
+
+        .side-view-transform {
+          top: calc(50% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
+            translate(0%, -50%) scale(var(--scale-dynamic));
+        }
+      }
+
+      @media screen and (max-height: 400px) {
+        .wrapper {
+          height: 100vh;
+        }
+
+        .front-view-transform {
+          top: calc(50% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg)
+            translate(0%, -50%) scale(var(--scale-dynamic));
+        }
+
+        .laying-down-view-transform {
+          top: calc(-56% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
+            translate(0%, 0%) scale(var(--scale-dynamic));
+        }
+
+        .side-view-transform {
+          top: calc(50% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
+            translate(0%, -50%) scale(var(--scale-dynamic));
+        }
+      }
+
+      @media screen and (max-height: 350px) {
+        .wrapper {
+          height: 100vh;
+        }
+
+        .front-view-transform {
+          top: calc(50% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg)
+            translate(0%, -50%) scale(var(--scale-dynamic));
+        }
+
+        .laying-down-view-transform {
+          top: calc(-66% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
+            translate(0%, 0%) scale(var(--scale-dynamic));
+        }
+
+        .side-view-transform {
+          top: calc(50% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
+            translate(0%, -50%) scale(var(--scale-dynamic));
+        }
+      }
+
+      @media screen and (max-height: 330px) {
+        .wrapper {
+          height: 100vh;
+        }
+
+        .front-view-transform {
+          top: calc(50% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg)
+            translate(0%, -50%) scale(var(--scale-dynamic));
+        }
+
+        .laying-down-view-transform {
+          top: calc(-76% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
+            translate(0%, 0%) scale(var(--scale-dynamic));
+        }
+
+        .side-view-transform {
+          top: calc(50% + 12px);
+          left: calc(60% + 14px);
+          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
+            translate(0%, -50%) scale(var(--scale-dynamic));
+        }
+      }
+
+
     </style>
   </head>
   <body>
     <section class="wrapper">
-      <div class="input-site">
-        <span>previewer.adalo.com/</span
-        ><input type="text" class="input" required />
-        <button class="submit">SUBMIT</button>
-      </div>
-      <div class="controls">
-        <div class="front-view active">Front</div>
-        <div class="laying-down-view">Laying Down</div>
-        <div class="side-view">Side</div>
+      <div class="control-wrapper">
+        <div class="input-site">
+          <span>previewer.adalo.com/</span
+          ><input type="text" class="input" required />
+          <button class="submit">SUBMIT</button>
+        </div>
+        <div class="controls">
+          <div class="front-view active">Front</div>
+          <div class="laying-down-view">Laying Down</div>
+          <div class="side-view">Side</div>
+        </div>
       </div>
       <div class="phone front-view-transform">
         <div class="front">
@@ -545,6 +746,14 @@
       const inputBox = document.querySelector(".input-site");
       const input = document.querySelector(".input-site input");
       const iframe = document.querySelector("iframe");
+      let heightWindow = window.innerHeight;
+      if (heightWindow < 960) {
+        heightWindow = window.innerHeight;
+        if (heightWindow < 960) {
+          let scale = window.innerHeight / 1000;
+          phone.setAttribute("style", "--scale-dynamic:" + scale);
+        }
+      }
 
       iframe.setAttribute(
         "src",
@@ -559,6 +768,8 @@
       inputBox.addEventListener("click", (e) => {
         changeSite(e);
       });
+
+      window.addEventListener("resize", phoneSizedDynamically);
 
       function randomNumber(min, max) {
         return Math.floor(Math.random() * (max - min) + min);
@@ -592,6 +803,16 @@
               "?os=ios&offset_bottom=34&offset_top=44&w=375&h=812&cache=" +
               randomNumber(0, 1000)
           );
+        }
+      }
+
+      function phoneSizedDynamically(e) {
+        if (heightWindow !== window.innerHeight) {
+          heightWindow = window.innerHeight;
+          if (heightWindow < 960) {
+            let scale = window.innerHeight / 1000;
+            phone.setAttribute("style", "--scale-dynamic:" + scale);
+          }
         }
       }
     </script>
