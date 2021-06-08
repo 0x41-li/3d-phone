@@ -41,11 +41,20 @@
 
       .wrapper {
         display: block;
-        height: 900px;
-        perspective: 3000px;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .perspective-phone {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(0%, -50%);
+        perspective: 2000px;
       }
 
       .phone {
+        position: relative;
         width: 385px;
         height: 810px;
         position: relative;
@@ -129,9 +138,10 @@
 
       .control-wrapper {
         position: absolute;
-        left: 10%;
+        left: 80px;
         top: 50%;
         transform: translateY(-50%);
+        z-index: 9999;
       }
 
       .controls {
@@ -239,25 +249,27 @@
         padding: 4px;
       }
 
+      .w-front-view-transform {
+        left: 60%;
+      }
+
+      .w-laying-down-view-transform {
+        left: 54%;
+      }
+
       .front-view-transform {
-        top: calc(100px + 12px);
-        left: calc(60% + 28px);
         transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
           scale(1);
       }
 
       .laying-down-view-transform {
-        top: calc(40px + 12px);
-        left: calc(60% + 28px);
         transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
-          translate(0%, 0%) scale(1.2);
+          translate(0%, 0%) scale(1);
       }
 
       .side-view-transform {
-        top: calc(100px + 12px);
-        left: calc(60% + 28px);
         transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
-          scale(1.05);
+          scale(1);
       }
 
       .corner {
@@ -335,302 +347,209 @@
         transform: rotateX(-88deg) translateZ(-534px) translateY(26px);
       }
 
-      @media screen and (max-width: 2000px) {
+      @media screen and (max-width: 1440px) {
+        .w-front-view-transform {
+          left: 60%;
+        }
+
+        .w-laying-down-view-transform {
+          left: 60%;
+        }
+
+        .w-side-view-transform {
+          left: 60%;
+        }
+
         .front-view-transform {
-          top: calc(100px + 12px);
-          left: calc(60% + 14px);
           transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
-            scale(0.8);
+            scale(0.85);
         }
 
         .laying-down-view-transform {
-          top: calc(40px + 12px);
-          left: calc(60% + 14px);
-          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
-            translate(0%, 0%) scale(1);
-        }
-
-        .side-view-transform {
-          top: calc(100px + 12px);
-          left: calc(60% + 14px);
-          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, 0%) scale(0.85);
-        }
-      }
-
-      @media screen and (max-width: 1640px) {
-        .control-wrapper {
-          left: 10px;
-        }
-        .front-view-transform {
-          top: calc(100px + 6px);
-          left: calc(50% + 14px);
-          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
-            scale(0.6);
-        }
-
-        .laying-down-view-transform {
-          top: calc(40px + 6px);
-          left: calc(50% + 14px);
           transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
             translate(0%, 0%) scale(0.7);
         }
 
         .side-view-transform {
-          top: calc(100px + 6px);
-          left: calc(50% + 14px);
           transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, 0%) scale(0.65);
+            translate(0%, 0%) scale(0.85);
         }
       }
 
-      @media screen and (max-width: 1100px) {
+      @media screen and (max-width: 1140px) {
+        .controls {
+          margin: auto;
+          margin-top: 10px;
+          display: flex;
+          width: max-content;
+          gap: 10px;
+        }
+
         .control-wrapper {
+          width: 100vw;
           top: 10px;
           left: 50%;
-          transform: translateX(-50%);
-          width: 100vw;
+          transform: translate(-50%, 0%);
+        }
+
+        .w-front-view-transform {
+          top: 0px;
+          left: 50%;
+          transform: translate(calc(-50% + 14px), 0%);
+        }
+
+        .w-laying-down-view-transform {
+          top: 0px;
+          left: 50%;
+          transform: translate(calc(-50% + 14px), 0%);
+        }
+
+        .w-side-view-transform {
+          top: 0px;
+          left: 50%;
+          transform: translate(calc(-50% + 14px), 0%);
         }
 
         .front-view-transform {
-          top: calc(120px + 6px);
-          left: calc(50% + 14px);
-          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg)
-            translate(-50%, 0%) scale(0.6);
+          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
+            scale(0.6);
         }
 
         .laying-down-view-transform {
-          top: calc(40px + 6px);
-          left: calc(50% + 14px);
           transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
-            translate(-74%, 0%) scale(0.7);
+            translate(0%, 0%) scale(0.7);
         }
 
         .side-view-transform {
-          top: calc(130px + 6px);
-          left: calc(50% + 14px);
           transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
-            translate(-70%, 0%) scale(0.65);
+            translate(0%, 0%) scale(0.6);
         }
       }
 
-      @media screen and (max-height: 960px) {
-        .wrapper {
-          height: 100vh;
+      @media screen and (max-width: 680px) {
+        .controls > div {
+          font-size: 12px;
+          flex: 1;
+          width: 25vw;
+        }
+
+        .input-site input {
+          width: 160px;
         }
 
         .front-view-transform {
-          top: calc(50% + 12px);
-          left: calc(60% + 14px);
-          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, -50%) scale(var(--scale-dynamic));
+          top: 10px;
+        }
+
+        .front-view-transform {
+          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
+            scale(0.6);
         }
 
         .laying-down-view-transform {
-          top: calc(0% + 12px);
-          left: calc(60% + 14px);
+          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
+            translate(0%, 0%) scale(0.4);
+        }
+
+        .side-view-transform {
+          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
+            translate(0%, 0%) scale(0.6);
+        }
+      }
+
+      @media screen and (max-height: 900px) {
+
+        .front-view-transform {
+          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
+            scale(var(--scale-dynamic));
+        }
+
+        .laying-down-view-transform {
           transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
             translate(0%, 0%) scale(var(--scale-dynamic));
         }
 
         .side-view-transform {
-          top: calc(50% + 12px);
-          left: calc(60% + 14px);
           transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, -50%) scale(var(--scale-dynamic));
+            translate(0%, 0%) scale(var(--scale-dynamic));
         }
       }
 
-      @media screen and (max-height: 660px) {
-        .wrapper {
-          height: 100vh;
+      @media screen and (max-height: 900px) and (max-width: 900px) {
+        .w-front-view-transform  {
+          top: 0px;
+        }
+        .w-laying-down-view-transform {
+          top:0px
+        }
+
+        .w-side-view-transform {
+          top: 0px;
         }
 
         .front-view-transform {
-          top: calc(50% + 12px);
-          left: calc(60% + 14px);
-          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, -50%) scale(var(--scale-dynamic));
+          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
+            scale(var(--scale-dynamic));
         }
 
         .laying-down-view-transform {
-          top: calc(-10% + 12px);
-          left: calc(60% + 14px);
           transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
-            translate(0%, 0%) scale(var(--scale-dynamic));
+            translate(0%, 0%) scale(0.4);
         }
 
         .side-view-transform {
-          top: calc(50% + 12px);
-          left: calc(60% + 14px);
           transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, -50%) scale(var(--scale-dynamic));
+            translate(0%, 0%) scale(var(--scale-dynamic));
+        }
+      }
+
+      @media screen and (max-height: 700px) {
+        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
+          top: -50px;
         }
       }
 
       @media screen and (max-height: 580px) {
-        .wrapper {
-          height: 100vh;
-        }
-
-        .front-view-transform {
-          top: calc(50% + 12px);
-          left: calc(60% + 14px);
-          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, -50%) scale(var(--scale-dynamic));
-        }
-
-        .laying-down-view-transform {
-          top: calc(-20% + 12px);
-          left: calc(60% + 14px);
-          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
-            translate(0%, 0%) scale(var(--scale-dynamic));
-        }
-
-        .side-view-transform {
-          top: calc(50% + 12px);
-          left: calc(60% + 14px);
-          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, -50%) scale(var(--scale-dynamic));
+        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
+          top: -80px;
         }
       }
 
-      @media screen and (max-height: 500px) {
-        .wrapper {
-          height: 100vh;
-        }
-
-        .front-view-transform {
-          top: calc(50% + 12px);
-          left: calc(60% + 14px);
-          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, -50%) scale(var(--scale-dynamic));
-        }
-
-        .laying-down-view-transform {
-          top: calc(-34% + 12px);
-          left: calc(60% + 14px);
-          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
-            translate(0%, 0%) scale(var(--scale-dynamic));
-        }
-
-        .side-view-transform {
-          top: calc(50% + 12px);
-          left: calc(60% + 14px);
-          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, -50%) scale(var(--scale-dynamic));
+      @media screen and (max-height: 525px) {
+        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
+          top: -100px;
         }
       }
 
-      @media screen and (max-height: 440px) {
-        .wrapper {
-          height: 100vh;
-        }
-
-        .front-view-transform {
-          top: calc(50% + 12px);
-          left: calc(60% + 14px);
-          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, -50%) scale(var(--scale-dynamic));
-        }
-
-        .laying-down-view-transform {
-          top: calc(-40% + 12px);
-          left: calc(60% + 14px);
-          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
-            translate(0%, 0%) scale(var(--scale-dynamic));
-        }
-
-        .side-view-transform {
-          top: calc(50% + 12px);
-          left: calc(60% + 14px);
-          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, -50%) scale(var(--scale-dynamic));
+      @media screen and (max-height: 495px) {
+        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
+          top: -110px;
         }
       }
 
-      @media screen and (max-height: 400px) {
-        .wrapper {
-          height: 100vh;
-        }
-
-        .front-view-transform {
-          top: calc(50% + 12px);
-          left: calc(60% + 14px);
-          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, -50%) scale(var(--scale-dynamic));
-        }
-
-        .laying-down-view-transform {
-          top: calc(-56% + 12px);
-          left: calc(60% + 14px);
-          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
-            translate(0%, 0%) scale(var(--scale-dynamic));
-        }
-
-        .side-view-transform {
-          top: calc(50% + 12px);
-          left: calc(60% + 14px);
-          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, -50%) scale(var(--scale-dynamic));
+      @media screen and (max-height: 450px) {
+        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
+          top: -120px;
         }
       }
 
-      @media screen and (max-height: 350px) {
-        .wrapper {
-          height: 100vh;
-        }
-
-        .front-view-transform {
-          top: calc(50% + 12px);
-          left: calc(60% + 14px);
-          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, -50%) scale(var(--scale-dynamic));
-        }
-
-        .laying-down-view-transform {
-          top: calc(-66% + 12px);
-          left: calc(60% + 14px);
-          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
-            translate(0%, 0%) scale(var(--scale-dynamic));
-        }
-
-        .side-view-transform {
-          top: calc(50% + 12px);
-          left: calc(60% + 14px);
-          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, -50%) scale(var(--scale-dynamic));
+      @media screen and (max-height: 430px) {
+        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
+          top: -130px;
         }
       }
 
-      @media screen and (max-height: 330px) {
-        .wrapper {
-          height: 100vh;
-        }
-
-        .front-view-transform {
-          top: calc(50% + 12px);
-          left: calc(60% + 14px);
-          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, -50%) scale(var(--scale-dynamic));
-        }
-
-        .laying-down-view-transform {
-          top: calc(-76% + 12px);
-          left: calc(60% + 14px);
-          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
-            translate(0%, 0%) scale(var(--scale-dynamic));
-        }
-
-        .side-view-transform {
-          top: calc(50% + 12px);
-          left: calc(60% + 14px);
-          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, -50%) scale(var(--scale-dynamic));
+      @media screen and (max-height: 410px) {
+        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
+          top: -140px;
         }
       }
 
-
+      @media screen and (max-height: 395px) {
+        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
+          top: -150px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -643,116 +562,126 @@
         </div>
         <div class="controls">
           <div class="front-view active">Front</div>
-          <div class="laying-down-view">Laying Down</div>
+          <div class="laying-down-view">Laying</div>
           <div class="side-view">Side</div>
         </div>
       </div>
-      <div class="phone front-view-transform">
-        <div class="front">
-          <img src="front.png" alt="" />
-          <div class="iframe-wrapper">
-            <iframe src="" frameborder="0"></iframe>
+      <div class="perspective-phone w-front-view-transform">
+        <div class="phone front-view-transform">
+          <div class="front">
+            <img src="front.png" alt="" />
+            <div class="iframe-wrapper">
+              <iframe src="" frameborder="0"></iframe>
+            </div>
           </div>
+          <div class="back"></div>
+          <div class="left">
+            <img src="left.png" alt="" />
+            <div class="corner">
+              <div class="corner-1"></div>
+              <div class="corner-2"></div>
+              <div class="corner-3"></div>
+              <div class="corner-4"></div>
+              <div class="corner-5"></div>
+              <div class="corner-6"></div>
+              <div class="corner-7"></div>
+              <div class="corner-8"></div>
+              <div class="corner-9"></div>
+              <div class="corner-10"></div>
+              <div class="corner-11"></div>
+              <div class="corner-12"></div>
+              <div class="corner-13"></div>
+            </div>
+            <div
+              class="corner"
+              style="
+                top: 20px;
+                left: 0px;
+                transform: rotateX(168deg) rotateY(180deg) translateZ(2px)
+                  translateX(-18px) translateY(-24px);
+              "
+            >
+              <div class="corner-1"></div>
+              <div class="corner-2"></div>
+              <div class="corner-3"></div>
+              <div class="corner-4"></div>
+              <div class="corner-5"></div>
+              <div class="corner-6"></div>
+              <div class="corner-7"></div>
+              <div class="corner-8"></div>
+              <div class="corner-9"></div>
+              <div class="corner-10"></div>
+              <div class="corner-11"></div>
+              <div class="corner-12"></div>
+            </div>
+          </div>
+          <div class="right">
+            <img src="right.png" alt="" />
+            <div
+              class="corner"
+              style="
+                top: -10px;
+                left: 0px;
+                transform: rotateZ(180deg) translateX(-16px) translateY(-56px);
+              "
+            >
+              <div class="corner-1"></div>
+              <div class="corner-2"></div>
+              <div class="corner-3"></div>
+              <div class="corner-4"></div>
+              <div class="corner-5"></div>
+              <div class="corner-6"></div>
+              <div class="corner-7"></div>
+              <div class="corner-8"></div>
+              <div class="corner-9"></div>
+              <div class="corner-10"></div>
+              <div class="corner-11"></div>
+              <div class="corner-12"></div>
+            </div>
+            <div
+              class="corner"
+              style="left: -0px; transform: translateZ(1px); bottom: 48px"
+            >
+              <div class="corner-1"></div>
+              <div class="corner-2"></div>
+              <div class="corner-3"></div>
+              <div class="corner-4"></div>
+              <div class="corner-5"></div>
+              <div class="corner-6"></div>
+              <div class="corner-7"></div>
+              <div class="corner-8"></div>
+              <div class="corner-9"></div>
+              <div class="corner-10"></div>
+              <div class="corner-11"></div>
+              <div class="corner-12"></div>
+            </div>
+          </div>
+          <div class="top"></div>
+          <div class="bottom"><img src="bottom.png" alt="" /></div>
         </div>
-        <div class="back"></div>
-        <div class="left">
-          <img src="left.png" alt="" />
-          <div class="corner">
-            <div class="corner-1"></div>
-            <div class="corner-2"></div>
-            <div class="corner-3"></div>
-            <div class="corner-4"></div>
-            <div class="corner-5"></div>
-            <div class="corner-6"></div>
-            <div class="corner-7"></div>
-            <div class="corner-8"></div>
-            <div class="corner-9"></div>
-            <div class="corner-10"></div>
-            <div class="corner-11"></div>
-            <div class="corner-12"></div>
-            <div class="corner-13"></div>
-          </div>
-          <div
-            class="corner"
-            style="
-              top: 20px;
-              left: 0px;
-              transform: rotateX(168deg) rotateY(180deg) translateZ(2px)
-                translateX(-18px) translateY(-24px);
-            "
-          >
-            <div class="corner-1"></div>
-            <div class="corner-2"></div>
-            <div class="corner-3"></div>
-            <div class="corner-4"></div>
-            <div class="corner-5"></div>
-            <div class="corner-6"></div>
-            <div class="corner-7"></div>
-            <div class="corner-8"></div>
-            <div class="corner-9"></div>
-            <div class="corner-10"></div>
-            <div class="corner-11"></div>
-            <div class="corner-12"></div>
-          </div>
-        </div>
-        <div class="right">
-          <img src="right.png" alt="" />
-          <div
-            class="corner"
-            style="
-              top: -10px;
-              left: 0px;
-              transform: rotateZ(180deg) translateX(-16px) translateY(-56px);
-            "
-          >
-            <div class="corner-1"></div>
-            <div class="corner-2"></div>
-            <div class="corner-3"></div>
-            <div class="corner-4"></div>
-            <div class="corner-5"></div>
-            <div class="corner-6"></div>
-            <div class="corner-7"></div>
-            <div class="corner-8"></div>
-            <div class="corner-9"></div>
-            <div class="corner-10"></div>
-            <div class="corner-11"></div>
-            <div class="corner-12"></div>
-          </div>
-          <div
-            class="corner"
-            style="left: -0px; transform: translateZ(1px); bottom: 48px"
-          >
-            <div class="corner-1"></div>
-            <div class="corner-2"></div>
-            <div class="corner-3"></div>
-            <div class="corner-4"></div>
-            <div class="corner-5"></div>
-            <div class="corner-6"></div>
-            <div class="corner-7"></div>
-            <div class="corner-8"></div>
-            <div class="corner-9"></div>
-            <div class="corner-10"></div>
-            <div class="corner-11"></div>
-            <div class="corner-12"></div>
-          </div>
-        </div>
-        <div class="top"></div>
-        <div class="bottom"><img src="bottom.png" alt="" /></div>
       </div>
     </section>
     <script>
       const controls = document.querySelector(".controls");
       const phone = document.querySelector(".phone");
+      const phonewrapper = document.querySelector(".perspective-phone");
       const inputBox = document.querySelector(".input-site");
       const input = document.querySelector(".input-site input");
       const iframe = document.querySelector("iframe");
       let heightWindow = window.innerHeight;
+      let widthWindow = window.innerWidth;
+      let scale = 0;
+      let timeout = null;
+
       if (heightWindow < 960) {
-        heightWindow = window.innerHeight;
-        if (heightWindow < 960) {
-          let scale = window.innerHeight / 1000;
-          phone.setAttribute("style", "--scale-dynamic:" + scale);
+        if (heightWindow < 960 && widthWindow > 1140) {
+          scale = window.innerHeight / 1000;
+        } else if (heightWindow <= 800 && widthWindow <= 425) {
+          scale = window.innerHeight / 1400;
+        } else {
+          scale = window.innerHeight / 1300;
         }
+        phone.setAttribute("style", "--scale-dynamic:" + scale);
       }
 
       iframe.setAttribute(
@@ -769,7 +698,10 @@
         changeSite(e);
       });
 
-      window.addEventListener("resize", phoneSizedDynamically);
+      window.addEventListener("resize", () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(phoneSizedDynamically, 1500);
+      });
 
       function randomNumber(min, max) {
         return Math.floor(Math.random() * (max - min) + min);
@@ -784,12 +716,16 @@
           if (e.target.className.includes("front-view")) {
             e.target.classList.add("active");
             phone.className = "phone front-view-transform";
+            phonewrapper.className = "perspective-phone w-front-view-transform";
           } else if (e.target.className.includes("laying-down-view")) {
             e.target.classList.add("active");
             phone.className = "phone laying-down-view-transform";
+            phonewrapper.className =
+              "perspective-phone w-laying-down-view-transform";
           } else if (e.target.className.includes("side-view")) {
             e.target.classList.add("active");
             phone.className = "phone side-view-transform";
+            phonewrapper.className = "perspective-phone w-side-view-transform";
           }
         }
       }
@@ -807,13 +743,16 @@
       }
 
       function phoneSizedDynamically(e) {
-        if (heightWindow !== window.innerHeight) {
-          heightWindow = window.innerHeight;
-          if (heightWindow < 960) {
-            let scale = window.innerHeight / 1000;
-            phone.setAttribute("style", "--scale-dynamic:" + scale);
-          }
+        heightWindow = window.innerHeight;
+        widthWindow = window.innerWidth;
+        if (heightWindow <= 960 && widthWindow >= 1140) {
+          scale = window.innerHeight / 960;
+        } else if (heightWindow <= 800 && widthWindow <= 425) {
+          scale = window.innerHeight / 1400;
+        } else {
+          scale = window.innerHeight / 1300;
         }
+        phone.setAttribute("style", "--scale-dynamic:" + scale);
       }
     </script>
   </body>
