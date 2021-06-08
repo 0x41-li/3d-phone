@@ -11,40 +11,53 @@
       body {
         padding: 0;
         margin: 0;
-        transition: 2s all;
+        font-family: "Comic Sans", Arial, Helvetica, sans-serif;
+        font-weight: 400;
+      }
+
+      body {
+        background-color: #123d64;
+        overflow: hidden;
       }
 
       img {
         position: absolute;
-        width: 280px;
-        height: 540px;
+        width: 100%;
+        height: 100%;
         cursor: none;
         pointer-events: none;
       }
 
       iframe {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 94%;
-        height: 98%;
-        z-index: -999;
-        border-radius: 44px;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        border-radius: 34px;
+        z-index: 998;
       }
+
       .wrapper {
+        display: block;
         height: 100vh;
         width: 100vw;
+        overflow: hidden;
+      }
+
+      .perspective-phone {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        perspective: 2000px;
       }
 
       .phone {
-        width: 280px;
-        height: 540px;
         position: relative;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg)
-          rotateZ(0deg);
+        width: 385px;
+        height: 810px;
+        position: relative;
         transform-style: preserve-3d;
       }
 
@@ -56,8 +69,15 @@
       }
 
       .front {
+        left: -28px;
+        top: -12px;
         border-radius: 14px;
         transform: translateZ(0px);
+      }
+
+      .front img {
+        transform: scaleY(1.05) scaleX(1.13);
+        z-index: 999;
       }
 
       .back {
@@ -72,34 +92,35 @@
       }
 
       div.bottom {
-        bottom: 0;
+        left: -20px;
+        bottom: 14px;
         height: 16px;
-        transform: rotateX(270deg) translateY(8px) translateZ(8px);
+        transform: rotateX(270deg) translateY(8px) translateZ(30px);
       }
 
       div.bottom img {
         left: 50%;
         transform: translateX(-50%);
-        width: 200px;
       }
 
       div.left {
         left: 0;
         width: 16px;
-        transform: rotateY(270deg) translateX(-10px) translateZ(6px);
+        transform: rotateY(270deg) translateX(-10px) translateZ(58px);
         transform-style: preserve-3d;
       }
 
       div.left img {
         top: 50%;
-        height: 490px;
+        height: 720px;
         transform: translateY(-50%);
       }
 
       div.right {
-        right: 0;
+        top: -10px;
+        right: 48px;
         width: 16px;
-        transform: rotateY(90deg) translateX(8px) translateZ(8px);
+        transform: rotateY(90deg) translateX(8px) translateZ(53px);
       }
 
       div.right img,
@@ -112,122 +133,45 @@
         left: 50%;
         transform: translateX(-50%);
         height: 16px;
-        width: 200px;
+        width: 360px;
+      }
+
+      .control-wrapper {
+        position: absolute;
+        left: 80px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 9999;
       }
 
       .controls {
-        position: absolute;
-        top: 60px;
-        right: 20px;
+        position: relative;
+        margin-top: 40px;
       }
 
       .controls > div {
         text-align: center;
-        width: 160px;
-        padding: 10px 0;
-        margin: 5px 0;
-        background-color: rgb(209, 209, 209);
-        font-family: "Courier New", Courier, monospace;
+        width: 180px;
+        padding: 7px;
+        margin: 5px auto;
+        color: #63b1f5;
+        font-weight: 400;
         cursor: pointer;
+        border: 1px solid #fcfcfc;
+        border-radius: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
       }
 
-      .controls > div:hover {
-        background-color: rgb(194, 194, 194);
-      }
-
-      .controls > div:active {
-        background-color: grey;
+      .controls .active {
+        background-color: #fcfcfc;
+        color: #57a1e1;
       }
 
       div.left > div {
         position: absolute;
         background-size: cover;
       }
-
-      .border-round-top-0 {
-        top: 0;
-        width: 16px;
-        height: 10px;
-        background-image: url(border.png);
-        background-size: cover;
-        transform: rotateX(11.25deg) translateZ(-6px) translateX(2px)
-          translateY(20px);
-      }
-      .border-round-top-1 {
-        top: 0;
-        width: 16px;
-        height: 9px;
-        background-image: url(border.png);
-        transform: rotateX(22.25deg) translateZ(-10px) translateX(2px)
-          translateY(10px);
-      }
-      .border-round-top-2 {
-        top: 0;
-        width: 16px;
-        height: 10px;
-        background-image: url(border.png);
-        transform: rotateX(32.25deg) translateZ(-11px) translateX(2px)
-          translateY(0px);
-      }
-      .border-round-top-3 {
-        top: 0;
-        width: 16px;
-        height: 10px;
-        background-image: url(border.png);
-        transform: rotateX(42.25deg) translateZ(-12px) translateX(2px)
-          translateY(-6px);
-      }
-      .border-round-top-4 {
-        top: 0;
-        width: 16px;
-        height: 10px;
-        background-image: url(border.png);
-        transform: rotateX(52.25deg) translateZ(-9px) translateX(2px)
-          translateY(-14px);
-      }
-
-      .border-round-bottom-0 {
-        bottom: 0;
-        width: 16px;
-        height: 10px;
-        background-image: url(border.png);
-        background-size: cover;
-        transform: rotateX(-11.25deg) translateZ(-6px) translateX(2px)
-          translateY(-20px);
-      }
-      .border-round-bottom-1 {
-        bottom: 0;
-        width: 16px;
-        height: 9px;
-        background-image: url(border.png);
-        transform: rotateX(-22.25deg) translateZ(-14px) translateX(2px)
-          translateY(-10px);
-      }
-      .border-round-bottom-2 {
-        bottom: 0;
-        width: 16px;
-        height: 10px;
-        background-image: url(border.png);
-        transform: rotateX(-32.25deg) translateZ(-11px) translateX(2px)
-          translateY(-7px);
-      }
-      .border-round-bottom-3 {
-        bottom: 0;
-        width: 16px;
-        height: 10px;
-        background-image: url(border.png);
-        transform: rotateX(-42.25deg) translateZ(-12px) translateX(0px)
-          translateY(5px);
-      }
-      .border-round-bottom-4 {
-        bottom: 0;
-        width: 16px;
-        height: 10px;
-        background-image: url(border.png);
-        transform: rotateX(-52.25deg) translateZ(-10px) translateX(2px)
-          translateY(16px);
-      }
-
 
       div.right {
         transform-style: preserve-3d;
@@ -236,90 +180,358 @@
         position: absolute;
       }
 
-      .rborder-round-bottom-0 {
-        bottom: 0;
-        width: 16px;
-        height: 10px;
-        background-image: url(border.png);
-        background-size: cover;
-        transform: rotateX(-11.25deg) translateZ(-6px) translateX(0px)
-          translateY(-20px);
-      }
-      .rborder-round-bottom-1 {
-        bottom: 0;
-        width: 16px;
-        height: 9px;
-        background-image: url(border.png);
-        transform: rotateX(-22.25deg) translateZ(-14px) translateX(0px)
-          translateY(-10px);
-      }
-      .rborder-round-bottom-2 {
-        bottom: 0;
-        width: 16px;
-        height: 10px;
-        background-image: url(border.png);
-        transform: rotateX(-32.25deg) translateZ(-11px) translateX(0px)
-          translateY(-7px);
-      }
-      .rborder-round-bottom-3 {
-        bottom: 0;
-        width: 16px;
-        height: 10px;
-        background-image: url(border.png);
-        transform: rotateX(-42.25deg) translateZ(-12px) translateX(0px)
-          translateY(5px);
-      }
-      .rborder-round-bottom-4 {
-        bottom: 0;
-        width: 16px;
-        height: 10px;
-        background-image: url(border.png);
-        transform: rotateX(-52.25deg) translateZ(-10px) translateX(0px)
-          translateY(16px);
-      }
-
       div.right img {
         top: 50%;
-        height: 490px;
+        height: 740px;
         transform: translateY(-50%);
+      }
+
+      .input-site {
+        position: relative;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      .input-site span {
+        display: block;
+        color: white;
+        font-weight: bold;
+        font-family: "open sans", Arial, Helvetica, sans-serif;
+        letter-spacing: 2px;
+        font-weight: 400;
+        margin-bottom: 10px;
+      }
+
+      .input-site input {
+        width: 260px;
+        padding: 7px 10px;
+        padding-right: 30px;
+        font-weight: 400;
+        margin-left: 4px;
+        outline: none;
+        border: none;
+        background-color: white;
+        border: 1px solid #63b1f5;
+        color: #63b1f5;
+      }
+
+      .input-site button {
+        transition: background-color 0.1s;
+        font-weight: 400;
+        background-color: #fff;
+        border: 1px solid #63b1f5;
+        padding: 6px 10px;
+        color: #63b1f5;
+        margin-left: -30px;
+        cursor: pointer;
+        border-radius: 0px 5px 5px 0px;
+        padding: 7px;
+        font-family: "open sans", Arial, Helvetica, sans-serif;
+        letter-spacing: 2px;
+      }
+
+      .input-site button:active {
+        background-color: #b9b9b9;
+      }
+
+      .phone-size-controllers {
+        position: absolute;
+        top: 200px;
+        left: 100px;
+        z-index: 1000;
+      }
+
+      .phone-size-controllers input {
+        text-align: center;
+        display: block;
+        width: 100px;
+        padding: 4px;
+      }
+
+      .w-front-view-transform {
+        top: 50%;
+        left: 50%;
+      }
+
+      .w-laying-down-view-transform {
+        left: 54%;
+      }
+
+      .front-view-transform {
+        transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
+          scale(1);
+      }
+
+      .laying-down-view-transform {
+        transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
+          translate(0%, 0%) scale(1);
+      }
+
+      .side-view-transform {
+        transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
+          scale(1);
+      }
+
+      .corner {
+        position: absolute;
+        bottom: 56px;
+        left: 3px;
+        transform-style: preserve-3d;
+        width: 0px;
+        height: 0px;
+      }
+
+      .corner > div {
+        position: absolute;
+        height: 8px;
+        width: 16px;
+        background-color: #fff;
+        background: url(border.png);
+      }
+
+      .corner-1 {
+        top: 4px;
+        transform: rotateX(0deg) translateZ(0px);
+      }
+
+      .corner-2 {
+        top: 12px;
+        transform: rotateX(-10deg) translateZ(-1px);
+      }
+
+      .corner-3 {
+        top: 20px;
+        transform: rotateX(-15deg) translateZ(-2.5px);
+      }
+
+      .corner-4 {
+        top: 28px;
+        transform: rotateX(-20deg) translateZ(-5px);
+      }
+
+      .corner-5 {
+        top: 38px;
+        transform: rotateX(-32deg) translateZ(-9.5px);
+      }
+
+      .corner-6 {
+        transform: rotateX(-34deg) translateZ(-14.5px);
+        top: 47px;
+      }
+
+      .corner-7 {
+        top: 62px;
+        transform: rotateX(-45deg) translateZ(-24px);
+      }
+
+      .corner-8 {
+        top: 76px;
+        transform: rotateX(-50deg) translateZ(-34px);
+      }
+
+      .corner-9 {
+        top: 103px;
+        transform: rotateX(-60deg) translateZ(-56px);
+      }
+
+      .corner-10 {
+        top: 174px;
+        transform: rotateX(-74deg) translateZ(-121.5px);
+      }
+      .corner-11 {
+        top: 250px;
+        transform: rotateX(-78deg) translateZ(-195px);
+      }
+      .corner-12 {
+        top: 593px;
+        transform: rotateX(-88deg) translateZ(-534px) translateY(26px);
+      }
+      @media screen and (max-height: 900px) {
+        .w-front-view-transform {
+          transform: translate(calc(-50% + 14px),-50%);
+        }
+        .front-view-transform {
+          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
+            scale(var(--scale-dynamic));
+        }
+
+        .laying-down-view-transform {
+          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
+            translate(0%, 0%) scale(var(--scale-dynamic));
+        }
+
+        .side-view-transform {
+          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
+            translate(0%, 0%) scale(var(--scale-dynamic));
+        }
       }
     </style>
   </head>
   <body>
     <section class="wrapper">
-      <div class="phone">
-        <div class="front">
-          <img src="front.png" alt="" /><iframe
-            src="https://previewer.adalo.com/preview/1890dbc3-274b-4245-bec4-895f9a44a8c1?os=ios&offset_bottom=34&offset_top=44&w=375&h=812"
-            frameborder="0"
-          ></iframe>
+      <div class="perspective-phone w-front-view-transform">
+        <div class="phone front-view-transform">
+          <div class="front">
+            <img src="front.png" alt="" />
+            <div class="iframe-wrapper">
+              <iframe src="" frameborder="0"></iframe>
+            </div>
+          </div>
+          <div class="back"></div>
+          <div class="left">
+            <img src="left.png" alt="" />
+            <div class="corner">
+              <div class="corner-1"></div>
+              <div class="corner-2"></div>
+              <div class="corner-3"></div>
+              <div class="corner-4"></div>
+              <div class="corner-5"></div>
+              <div class="corner-6"></div>
+              <div class="corner-7"></div>
+              <div class="corner-8"></div>
+              <div class="corner-9"></div>
+              <div class="corner-10"></div>
+              <div class="corner-11"></div>
+              <div class="corner-12"></div>
+              <div class="corner-13"></div>
+            </div>
+            <div
+              class="corner"
+              style="
+                top: 20px;
+                left: 0px;
+                transform: rotateX(168deg) rotateY(180deg) translateZ(2px)
+                  translateX(-18px) translateY(-24px);
+              "
+            >
+              <div class="corner-1"></div>
+              <div class="corner-2"></div>
+              <div class="corner-3"></div>
+              <div class="corner-4"></div>
+              <div class="corner-5"></div>
+              <div class="corner-6"></div>
+              <div class="corner-7"></div>
+              <div class="corner-8"></div>
+              <div class="corner-9"></div>
+              <div class="corner-10"></div>
+              <div class="corner-11"></div>
+              <div class="corner-12"></div>
+            </div>
+          </div>
+          <div class="right">
+            <img src="right.png" alt="" />
+            <div
+              class="corner"
+              style="
+                top: -10px;
+                left: 0px;
+                transform: rotateZ(180deg) translateX(-16px) translateY(-56px);
+              "
+            >
+              <div class="corner-1"></div>
+              <div class="corner-2"></div>
+              <div class="corner-3"></div>
+              <div class="corner-4"></div>
+              <div class="corner-5"></div>
+              <div class="corner-6"></div>
+              <div class="corner-7"></div>
+              <div class="corner-8"></div>
+              <div class="corner-9"></div>
+              <div class="corner-10"></div>
+              <div class="corner-11"></div>
+              <div class="corner-12"></div>
+            </div>
+            <div
+              class="corner"
+              style="left: -0px; transform: translateZ(1px); bottom: 48px"
+            >
+              <div class="corner-1"></div>
+              <div class="corner-2"></div>
+              <div class="corner-3"></div>
+              <div class="corner-4"></div>
+              <div class="corner-5"></div>
+              <div class="corner-6"></div>
+              <div class="corner-7"></div>
+              <div class="corner-8"></div>
+              <div class="corner-9"></div>
+              <div class="corner-10"></div>
+              <div class="corner-11"></div>
+              <div class="corner-12"></div>
+            </div>
+          </div>
+          <div class="top"></div>
+          <div class="bottom"><img src="bottom.png" alt="" /></div>
         </div>
-        <div class="back"><img src="back.png" alt="" /></div>
-        <div class="left">
-          <img src="left.png" alt="" />
-          <div class="border-round-top-0"></div>
-          <div class="border-round-top-1"></div>
-          <div class="border-round-top-2"></div>
-          <div class="border-round-top-3"></div>
-          <div class="border-round-top-4"></div>
-          <div class="border-round-bottom-0"></div>
-          <div class="border-round-bottom-1"></div>
-          <div class="border-round-bottom-2"></div>
-          <div class="border-round-bottom-3"></div>
-          <div class="border-round-bottom-4"></div>
-        </div>
-        <div class="right">
-          <img src="right.png" alt="" />
-          <div class="rborder-round-bottom-0"></div>
-          <div class="rborder-round-bottom-1"></div>
-          <div class="rborder-round-bottom-2"></div>
-          <div class="rborder-round-bottom-3"></div>
-          <div class="rborder-round-bottom-4"></div>
-        </div>
-        <div class="top"><img src="top.png" alt="" /></div>
-        <div class="bottom"><img src="bottom.png" alt="" /></div>
       </div>
     </section>
+    <script>
+      const phone = document.querySelector(".phone");
+      const iframe = document.querySelector("iframe");
+      let heightWindow = window.innerHeight;
+      let scale = 0;
+      let timeout = null;
 
+      if (heightWindow < 960) {
+        if (heightWindow < 960) {
+          scale = window.innerHeight / 1000;
+        } else if (heightWindow <= 800) {
+          scale = window.innerHeight / 1400;
+        } else {
+          scale = window.innerHeight / 1300;
+        }
+        phone.setAttribute("style", "--scale-dynamic:" + scale);
+      }
+
+      iframe.setAttribute(
+        "src",
+        "https://previewer.adalo.com/preview/a758d618-0362-4e76-8f6b-103d0561dc1c?os=ios&offset_bottom=34&offset_top=44&w=375&h=812&cache=" +
+          randomNumber(0, 1000)
+      );
+
+      window.addEventListener("resize", () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(phoneSizedDynamically, 1500);
+      });
+
+      function randomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min) + min);
+      }
+
+      function controlsClicked(e) {
+        if (!e.target.className.includes("controls")) {
+          let buttons = document.querySelectorAll(".controls div");
+          for (let u = 0; u < buttons.length; u++) {
+            buttons[u].classList.remove("active");
+          }
+          if (e.target.className.includes("front-view")) {
+            e.target.classList.add("active");
+            phone.className = "phone front-view-transform";
+            phonewrapper.className = "perspective-phone w-front-view-transform";
+          } else if (e.target.className.includes("laying-down-view")) {
+            e.target.classList.add("active");
+            phone.className = "phone laying-down-view-transform";
+            phonewrapper.className =
+              "perspective-phone w-laying-down-view-transform";
+          } else if (e.target.className.includes("side-view")) {
+            e.target.classList.add("active");
+            phone.className = "phone side-view-transform";
+            phonewrapper.className = "perspective-phone w-side-view-transform";
+          }
+        }
+      }
+
+      function phoneSizedDynamically(e) {
+        heightWindow = window.innerHeight;
+        if (heightWindow <= 960) {
+          scale = window.innerHeight / 960;
+        } else if (heightWindow <= 800) {
+          scale = window.innerHeight / 1400;
+        } else {
+          scale = window.innerHeight / 1300;
+        }
+        phone.setAttribute("style", "--scale-dynamic:" + scale);
+      }
+    </script>
   </body>
 </html>
