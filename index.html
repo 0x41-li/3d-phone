@@ -1,861 +1,894 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Phone</title>
-    <style>
-      *,
-      html,
-      body {
-        padding: 0;
-        margin: 0;
-        transition: 2s all;
-        font-family: "Comic Sans", Arial, Helvetica, sans-serif;
-        font-weight: 400;
-      }
 
-      body {
-        background-color: #123d64;
-        overflow: hidden;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phone</title>
+  <style>
+    *,
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+      transition: 2s all;
+      font-family: "Comic Sans", Arial, Helvetica, sans-serif;
+      font-weight: 400;
+    }
 
-      img {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        cursor: none;
-        pointer-events: none;
-      }
+    body {
+      background-color: #123d64;
+      overflow: hidden;
+    }
 
-      iframe {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        height: 100%;
-        width: 100%;
-        border-radius: 34px;
-        z-index: 998;
-      }
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      cursor: none;
+      pointer-events: none;
+    }
 
-      .wrapper {
-        display: block;
-        height: 100vh;
-        overflow: hidden;
-      }
+    iframe {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      height: 100%;
+      width: 100%;
+      border-radius: 34px;
+      z-index: 998;
+    }
 
-      .perspective-phone {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(0%, -50%);
-        perspective: 2000px;
-      }
+    .wrapper {
+      display: block;
+      height: 100vh;
+      overflow: hidden;
+    }
 
-      .phone {
-        position: relative;
-        width: 385px;
-        height: 810px;
-        position: relative;
-        transform-style: preserve-3d;
-      }
+    .perspective-phone {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(0%, -50%);
+      perspective: 2000px;
+    }
 
-      .phone > div {
-        backface-visibility: hidden;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-      }
+    .phone {
+      position: relative;
+      width: 385px;
+      height: 810px;
+      position: relative;
+      transform-style: preserve-3d;
+    }
 
-      .front {
-        left: -28px;
-        top: -12px;
-        border-radius: 14px;
-        transform: translateZ(0px);
-      }
+    .phone>div {
+      backface-visibility: hidden;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
 
-      .front img {
-        transform: scaleY(1.05) scaleX(1.13);
-        z-index: 999;
-      }
+    .front {
+      left: -28px;
+      top: -12px;
+      border-radius: 14px;
+      transform: translateZ(0px);
+    }
 
-      .back {
-        transform: translateZ(-16px) rotateY(180deg);
-        border-radius: 14px;
-      }
+    .front img {
+      transform: scaleY(1.05) scaleX(1.13);
+      z-index: 999;
+    }
 
-      div.top {
-        top: 0;
-        height: 16px;
-        transform: rotateX(90deg) translateY(-8px) translateZ(8px);
-      }
+    .back {
+      transform: translateZ(-16px) rotateY(180deg);
+      border-radius: 14px;
+    }
 
-      div.bottom {
-        left: -20px;
-        bottom: 14px;
-        height: 16px;
-        transform: rotateX(270deg) translateY(8px) translateZ(30px);
-      }
+    div.top {
+      top: 0;
+      height: 16px;
+      transform: rotateX(90deg) translateY(-8px) translateZ(8px);
+    }
 
-      div.bottom img {
-        left: 50%;
-        transform: translateX(-50%);
-      }
+    div.bottom {
+      left: -20px;
+      bottom: 14px;
+      height: 16px;
+      transform: rotateX(270deg) translateY(8px) translateZ(30px);
+    }
 
-      div.left {
-        left: 0;
-        width: 16px;
-        transform: rotateY(270deg) translateX(-10px) translateZ(58px);
-        transform-style: preserve-3d;
-      }
+    div.bottom img {
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
-      div.left img {
-        top: 50%;
-        height: 720px;
-        transform: translateY(-50%);
-      }
+    div.left {
+      left: 0;
+      width: 16px;
+      transform: rotateY(270deg) translateX(-8px) translateZ(58px);
+      transform-style: preserve-3d;
+    }
 
-      div.right {
-        top: -10px;
-        right: 48px;
-        width: 16px;
-        transform: rotateY(90deg) translateX(8px) translateZ(53px);
-      }
+    div.left img {
+      top: 50%;
+      height: 720px;
+      transform: translateY(-50%);
+    }
 
-      div.right img,
-      div.left img {
-        width: 20px;
-      }
+    div.right {
+      top: -10px;
+      right: 48px;
+      width: 16px;
+      transform: rotateY(90deg) translateX(8px) translateZ(53px);
+    }
 
-      div.bottom img,
-      div.top img {
-        left: 50%;
-        transform: translateX(-50%);
-        height: 16px;
-        width: 360px;
-      }
+    div.right img,
+    div.left img {
+      width: 20px;
+    }
 
-      .control-wrapper {
-        position: absolute;
-        left: 80px;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 9999;
-      }
+    div.bottom img,
+    div.top img {
+      left: 50%;
+      transform: translateX(-50%);
+      height: 16px;
+      width: 360px;
+    }
 
-      .controls {
-        position: relative;
-        margin-top: 40px;
-      }
+    .control-wrapper {
+      position: absolute;
+      left: 80px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 9999;
+    }
 
-      .controls > div {
-        text-align: center;
-        width: 180px;
-        padding: 7px;
-        margin: 5px auto;
-        color: #63b1f5;
-        font-weight: 400;
-        cursor: pointer;
-        border: 1px solid #fcfcfc;
-        border-radius: 10px;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-      }
+    .controls {
+      position: relative;
+      margin-top: 40px;
+    }
 
-      .controls .active {
-        background-color: #fcfcfc;
-        color: #57a1e1;
-      }
+    .controls>div {
+      text-align: center;
+      width: 180px;
+      padding: 7px;
+      margin: 5px auto;
+      color: #63b1f5;
+      font-weight: 400;
+      cursor: pointer;
+      border: 1px solid #fcfcfc;
+      border-radius: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
 
-      div.left > div {
-        position: absolute;
-        background-size: cover;
-      }
+    .controls .active {
+      background-color: #fcfcfc;
+      color: #57a1e1;
+    }
 
-      div.right {
-        transform-style: preserve-3d;
-      }
-      div.right > div {
-        position: absolute;
-      }
+    div.left>div {
+      position: absolute;
+      background-size: cover;
+    }
 
-      div.right img {
-        top: 50%;
-        height: 740px;
-        transform: translateY(-50%);
-      }
+    div.right {
+      transform-style: preserve-3d;
+    }
 
-      .input-site {
-        position: relative;
-        padding: 10px 20px;
-        border-radius: 8px;
-        text-align: center;
-      }
+    div.right>div {
+      position: absolute;
+    }
 
-      .input-site span {
-        display: block;
-        color: white;
-        font-weight: bold;
-        font-family: "open sans", Arial, Helvetica, sans-serif;
-        letter-spacing: 2px;
-        font-weight: 400;
-        margin-bottom: 10px;
-      }
+    div.right img {
+      top: 50%;
+      height: 740px;
+      transform: translateY(-50%);
+    }
 
-      .input-site input {
-        width: 260px;
-        padding: 7px 10px;
-        padding-right: 30px;
-        font-weight: 400;
-        margin-left: 4px;
-        outline: none;
-        border: none;
-        background-color: white;
-        border: 1px solid #63b1f5;
-        color: #63b1f5;
-      }
+    .input-site {
+      position: relative;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
 
-      .input-site button {
-        transition: background-color 0.1s;
-        font-weight: 400;
-        background-color: #fff;
-        border: 1px solid #63b1f5;
-        padding: 6px 10px;
-        color: #63b1f5;
-        margin-left: -30px;
-        cursor: pointer;
-        border-radius: 0px 5px 5px 0px;
-        padding: 7px;
-        font-family: "open sans", Arial, Helvetica, sans-serif;
-        letter-spacing: 2px;
-      }
+    .input-site span {
+      display: block;
+      color: white;
+      font-weight: bold;
+      font-family: "open sans", Arial, Helvetica, sans-serif;
+      letter-spacing: 2px;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
 
-      .input-site button:active {
-        background-color: #b9b9b9;
-      }
+    .input-site input {
+      width: 260px;
+      padding: 7px 10px;
+      padding-right: 30px;
+      font-weight: 400;
+      margin-left: 4px;
+      outline: none;
+      border: none;
+      background-color: white;
+      border: 1px solid #63b1f5;
+      color: #63b1f5;
+    }
 
-      .phone-size-controllers {
-        position: absolute;
-        top: 200px;
-        left: 100px;
-        z-index: 1000;
-      }
+    .input-site button {
+      transition: background-color 0.1s;
+      font-weight: 400;
+      background-color: #fff;
+      border: 1px solid #63b1f5;
+      padding: 6px 10px;
+      color: #63b1f5;
+      margin-left: -30px;
+      cursor: pointer;
+      border-radius: 0px 5px 5px 0px;
+      padding: 7px;
+      font-family: "open sans", Arial, Helvetica, sans-serif;
+      letter-spacing: 2px;
+    }
 
-      .phone-size-controllers input {
-        text-align: center;
-        display: block;
-        width: 100px;
-        padding: 4px;
-      }
+    .input-site button:active {
+      background-color: #b9b9b9;
+    }
 
+    .phone-size-controllers {
+      position: absolute;
+      top: 200px;
+      left: 100px;
+      z-index: 1000;
+    }
+
+    .phone-size-controllers input {
+      text-align: center;
+      display: block;
+      width: 100px;
+      padding: 4px;
+    }
+
+    .w-front-view-transform {
+      left: 60%;
+    }
+
+    .w-laying-down-view-transform {
+      left: 54%;
+    }
+
+    .front-view-transform {
+      transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%) scale(1);
+    }
+
+    .laying-down-view-transform {
+      transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg) translate(0%, 0%) scale(1);
+    }
+
+    .side-view-transform {
+      transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%) scale(1);
+    }
+
+    .corner {
+      position: absolute;
+      bottom: 56px;
+      left: 3px;
+      transform-style: preserve-3d;
+      width: 0px;
+      height: 0px;
+    }
+
+    .corner>div {
+      position: absolute;
+      height: 8px;
+      width: 16px;
+      background-color: #fff;
+      background: url(border.png);
+    }
+
+    .corner-fix {
+      top: -4px;
+      transform: rotateX(0deg) translateZ(1px);
+    }
+
+    .corner-1 {
+      top: 4px;
+      transform: rotateX(0deg) translateZ(0px);
+    }
+
+    .corner-2 {
+      top: 12px;
+      transform: rotateX(-10deg) translateZ(-1px);
+    }
+
+    .corner-3 {
+      top: 20px;
+      transform: rotateX(-15deg) translateZ(-2.5px);
+    }
+
+    .corner-4 {
+      top: 28px;
+      transform: rotateX(-20deg) translateZ(-5px);
+    }
+
+    .corner-5 {
+      top: 38px;
+      transform: rotateX(-32deg) translateZ(-9.5px);
+    }
+
+    .corner-6 {
+      transform: rotateX(-34deg) translateZ(-14.5px);
+      top: 47px;
+    }
+
+    .corner-7 {
+      top: 62px;
+      transform: rotateX(-45deg) translateZ(-24px);
+    }
+
+    .corner-8 {
+      top: 76px;
+      transform: rotateX(-50deg) translateZ(-34px);
+    }
+
+    .corner-9 {
+      top: 103px;
+      transform: rotateX(-60deg) translateZ(-56px);
+    }
+
+    .corner-10 {
+      top: 174px;
+      transform: rotateX(-74deg) translateZ(-121.5px);
+    }
+
+    .corner-11 {
+      top: 250px;
+      transform: rotateX(-78deg) translateZ(-195px);
+    }
+
+    .corner-12 {
+      top: 593px;
+      transform: rotateX(-88deg) translateZ(-534px) translateY(26px);
+    }
+
+    @media screen and (max-width: 1440px) {
       .w-front-view-transform {
         left: 60%;
       }
 
       .w-laying-down-view-transform {
-        left: 54%;
+        left: 60%;
+      }
+
+      .w-side-view-transform {
+        left: 60%;
       }
 
       .front-view-transform {
-        transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
-          scale(1);
+        transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%) scale(0.85);
       }
 
       .laying-down-view-transform {
-        transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
-          translate(0%, 0%) scale(1);
+        transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg) translate(0%, 0%) scale(0.7);
       }
 
       .side-view-transform {
-        transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
-          scale(1);
+        transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%) scale(0.85);
+      }
+    }
+
+    @media screen and (max-width: 1140px) {
+      .controls {
+        margin: auto;
+        margin-top: 10px;
+        display: flex;
+        width: max-content;
+        gap: 10px;
       }
 
-      .corner {
-        position: absolute;
-        bottom: 56px;
-        left: 3px;
-        transform-style: preserve-3d;
-        width: 0px;
-        height: 0px;
+      .control-wrapper {
+        width: 100vw;
+        top: 10px;
+        left: 50%;
+        transform: translate(-50%, 0%);
       }
 
-      .corner > div {
-        position: absolute;
-        height: 8px;
-        width: 16px;
-        background-color: #fff;
-        background: url(border.png);
+      .w-front-view-transform {
+        top: 0px;
+        left: 50%;
+        transform: translate(calc(-50% + 14px), 0%);
       }
 
-      .corner-1 {
-        top: 4px;
-        transform: rotateX(0deg) translateZ(0px);
+      .w-laying-down-view-transform {
+        top: 0px;
+        left: 50%;
+        transform: translate(calc(-50% + 14px), 0%);
       }
 
-      .corner-2 {
-        top: 12px;
-        transform: rotateX(-10deg) translateZ(-1px);
+      .w-side-view-transform {
+        top: 0px;
+        left: 50%;
+        transform: translate(calc(-50% + 14px), 0%);
       }
 
-      .corner-3 {
-        top: 20px;
-        transform: rotateX(-15deg) translateZ(-2.5px);
+      .front-view-transform {
+        transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%) scale(0.6);
       }
 
-      .corner-4 {
-        top: 28px;
-        transform: rotateX(-20deg) translateZ(-5px);
+      .laying-down-view-transform {
+        transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg) translate(0%, 0%) scale(0.7);
       }
 
-      .corner-5 {
-        top: 38px;
-        transform: rotateX(-32deg) translateZ(-9.5px);
+      .side-view-transform {
+        transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%) scale(0.6);
+      }
+    }
+
+    @media screen and (max-width: 680px) {
+      .controls>div {
+        font-size: 12px;
+        flex: 1;
+        width: 25vw;
       }
 
-      .corner-6 {
-        transform: rotateX(-34deg) translateZ(-14.5px);
-        top: 47px;
+      .input-site input {
+        width: 160px;
       }
 
-      .corner-7 {
-        top: 62px;
-        transform: rotateX(-45deg) translateZ(-24px);
+      .front-view-transform {
+        top: 10px;
       }
 
-      .corner-8 {
-        top: 76px;
-        transform: rotateX(-50deg) translateZ(-34px);
+      .front-view-transform {
+        transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%) scale(0.6);
       }
 
-      .corner-9 {
-        top: 103px;
-        transform: rotateX(-60deg) translateZ(-56px);
+      .laying-down-view-transform {
+        transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg) translate(0%, 0%) scale(0.4);
       }
 
-      .corner-10 {
-        top: 174px;
-        transform: rotateX(-74deg) translateZ(-121.5px);
+      .side-view-transform {
+        transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%) scale(0.6);
       }
-      .corner-11 {
-        top: 250px;
-        transform: rotateX(-78deg) translateZ(-195px);
-      }
-      .corner-12 {
-        top: 593px;
-        transform: rotateX(-88deg) translateZ(-534px) translateY(26px);
+    }
+
+    @media screen and (max-height: 900px) {
+
+      .front-view-transform {
+        transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%) scale(var(--scale-dynamic));
       }
 
-      @media screen and (max-width: 1440px) {
-        .w-front-view-transform {
-          left: 60%;
-        }
-
-        .w-laying-down-view-transform {
-          left: 60%;
-        }
-
-        .w-side-view-transform {
-          left: 60%;
-        }
-
-        .front-view-transform {
-          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
-            scale(0.85);
-        }
-
-        .laying-down-view-transform {
-          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
-            translate(0%, 0%) scale(0.7);
-        }
-
-        .side-view-transform {
-          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, 0%) scale(0.85);
-        }
+      .laying-down-view-transform {
+        transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg) translate(0%, 0%) scale(var(--scale-dynamic));
       }
 
-      @media screen and (max-width: 1140px) {
-        .controls {
-          margin: auto;
-          margin-top: 10px;
-          display: flex;
-          width: max-content;
-          gap: 10px;
-        }
+      .side-view-transform {
+        transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%) scale(var(--scale-dynamic));
+      }
+    }
 
-        .control-wrapper {
-          width: 100vw;
-          top: 10px;
-          left: 50%;
-          transform: translate(-50%, 0%);
-        }
-
-        .w-front-view-transform {
-          top: 0px;
-          left: 50%;
-          transform: translate(calc(-50% + 14px), 0%);
-        }
-
-        .w-laying-down-view-transform {
-          top: 0px;
-          left: 50%;
-          transform: translate(calc(-50% + 14px), 0%);
-        }
-
-        .w-side-view-transform {
-          top: 0px;
-          left: 50%;
-          transform: translate(calc(-50% + 14px), 0%);
-        }
-
-        .front-view-transform {
-          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
-            scale(0.6);
-        }
-
-        .laying-down-view-transform {
-          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
-            translate(0%, 0%) scale(0.7);
-        }
-
-        .side-view-transform {
-          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, 0%) scale(0.6);
-        }
+    @media screen and (max-height: 900px) and (max-width: 900px) {
+      .w-front-view-transform {
+        top: 0px;
       }
 
-      @media screen and (max-width: 680px) {
-        .controls > div {
-          font-size: 12px;
-          flex: 1;
-          width: 25vw;
-        }
-
-        .input-site input {
-          width: 160px;
-        }
-
-        .front-view-transform {
-          top: 10px;
-        }
-
-        .front-view-transform {
-          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
-            scale(0.6);
-        }
-
-        .laying-down-view-transform {
-          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
-            translate(0%, 0%) scale(0.4);
-        }
-
-        .side-view-transform {
-          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, 0%) scale(0.6);
-        }
+      .w-laying-down-view-transform {
+        top: 0px
       }
 
-      @media screen and (max-height: 900px) {
-
-        .front-view-transform {
-          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
-            scale(var(--scale-dynamic));
-        }
-
-        .laying-down-view-transform {
-          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
-            translate(0%, 0%) scale(var(--scale-dynamic));
-        }
-
-        .side-view-transform {
-          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, 0%) scale(var(--scale-dynamic));
-        }
+      .w-side-view-transform {
+        top: 0px;
       }
 
-      @media screen and (max-height: 900px) and (max-width: 900px) {
-        .w-front-view-transform  {
-          top: 0px;
-        }
-        .w-laying-down-view-transform {
-          top:0px
-        }
-
-        .w-side-view-transform {
-          top: 0px;
-        }
-
-        .front-view-transform {
-          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
-            scale(var(--scale-dynamic));
-        }
-
-        .laying-down-view-transform {
-          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
-            translate(0%, 0%) scale(0.4);
-        }
-
-        .side-view-transform {
-          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, 0%) scale(var(--scale-dynamic));
-        }
+      .front-view-transform {
+        transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%) scale(var(--scale-dynamic));
       }
 
-      @media screen and (max-height: 700px) and (max-width: 680px) {
-        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
-          top: -50px;
-        }
+      .laying-down-view-transform {
+        transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg) translate(0%, 0%) scale(0.4);
       }
 
-      @media screen and (max-height: 580px)  and (max-width: 680px) {
-        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
-          top: -80px;
-        }
+      .side-view-transform {
+        transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%) scale(var(--scale-dynamic));
+      }
+    }
+
+    @media screen and (max-height: 700px) and (max-width: 680px) {
+
+      .w-front-view-transform,
+      .w-laying-down-view-transform,
+      .w-side-view-transform {
+        top: -50px;
+      }
+    }
+
+    @media screen and (max-height: 580px) and (max-width: 680px) {
+
+      .w-front-view-transform,
+      .w-laying-down-view-transform,
+      .w-side-view-transform {
+        top: -80px;
+      }
+    }
+
+    @media screen and (max-height: 525px) and (max-width: 680px) {
+
+      .w-front-view-transform,
+      .w-laying-down-view-transform,
+      .w-side-view-transform {
+        top: -100px;
+      }
+    }
+
+    @media screen and (max-height: 495px) and (max-width: 680px) {
+
+      .w-front-view-transform,
+      .w-laying-down-view-transform,
+      .w-side-view-transform {
+        top: -110px;
+      }
+    }
+
+    @media screen and (max-height: 450px) and (max-width: 680px) {
+
+      .w-front-view-transform,
+      .w-laying-down-view-transform,
+      .w-side-view-transform {
+        top: -120px;
+      }
+    }
+
+    @media screen and (max-height: 430px) and (max-width: 680px) {
+
+      .w-front-view-transform,
+      .w-laying-down-view-transform,
+      .w-side-view-transform {
+        top: -130px;
+      }
+    }
+
+    @media screen and (max-height: 410px) and (max-width: 680px) {
+
+      .w-front-view-transform,
+      .w-laying-down-view-transform,
+      .w-side-view-transform {
+        top: -140px;
+      }
+    }
+
+    @media screen and (max-height: 395px) and (max-width: 680px) {
+
+      .w-front-view-transform,
+      .w-laying-down-view-transform,
+      .w-side-view-transform {
+        top: -150px;
+      }
+    }
+
+
+
+
+
+
+
+    @media screen and (max-height: 900px) and (max-width: 1140px) {
+      .w-front-view-transform {
+        top: 40px;
       }
 
-      @media screen and (max-height: 525px)  and (max-width: 680px) {
-        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
-          top: -100px;
-        }
+      .w-laying-down-view-transform {
+        top: 40px;
       }
 
-      @media screen and (max-height: 495px)  and (max-width: 680px) {
-        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
-          top: -110px;
-        }
+      .w-side-view-transform {
+        top: 0px;
       }
 
-      @media screen and (max-height: 450px)  and (max-width: 680px) {
-        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
-          top: -120px;
-        }
+      .front-view-transform {
+        transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%) scale(var(--scale-dynamic));
       }
 
-      @media screen and (max-height: 430px)  and (max-width: 680px) {
-        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
-          top: -130px;
-        }
+      .laying-down-view-transform {
+        transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg) translate(0%, 0%) scale(0.6);
       }
 
-      @media screen and (max-height: 410px)  and (max-width: 680px) {
-        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
-          top: -140px;
-        }
+      .side-view-transform {
+        transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%) scale(var(--scale-dynamic));
       }
+    }
 
-      @media screen and (max-height: 395px)  and (max-width: 680px) {
-        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
-          top: -150px;
-        }
+    @media screen and (max-height: 900px) and (max-width: 620px) {
+      .laying-down-view-transform {
+        transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg) translate(0%, 0%) scale(0.4);
       }
+    }
 
-      
+    @media screen and (max-height: 700px) and (max-width: 1140px) {
 
-
-
-
-
-      @media screen and (max-height: 900px) and (max-width: 1140px) {
-        .w-front-view-transform  {
-          top: 40px;
-        }
-        .w-laying-down-view-transform {
-          top: 40px;
-        }
-
-        .w-side-view-transform {
-          top: 0px;
-        }
-
-        .front-view-transform {
-          transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translate(0%, 0%)
-            scale(var(--scale-dynamic));
-        }
-
-        .laying-down-view-transform {
-          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
-            translate(0%, 0%) scale(0.6);
-        }
-
-        .side-view-transform {
-          transform: rotateY(-45deg) rotateX(0deg) rotateZ(0deg)
-            translate(0%, 0%) scale(var(--scale-dynamic));
-        }
+      .w-front-view-transform,
+      .w-laying-down-view-transform,
+      .w-side-view-transform {
+        top: -20px;
       }
+    }
 
-      @media screen and (max-height: 900px) and (max-width: 620px) {
-        .laying-down-view-transform {
-          transform: rotateY(10deg) rotateX(50deg) rotateZ(-40deg)
-            translate(0%, 0%) scale(0.4);
-        }
+    @media screen and (max-height: 580px) and (max-width: 1140px) {
+
+      .w-front-view-transform,
+      .w-laying-down-view-transform,
+      .w-side-view-transform {
+        top: -60px;
       }
+    }
 
-      @media screen and (max-height: 700px) and (max-width: 1140px) {
-        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
-          top: -20px;
-        }
+    @media screen and (max-height: 525px) and (max-width: 1140px) {
+
+      .w-front-view-transform,
+      .w-laying-down-view-transform,
+      .w-side-view-transform {
+        top: -80px;
       }
+    }
 
-      @media screen and (max-height: 580px)  and (max-width: 1140px) {
-        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
-          top: -60px;
-        }
+    @media screen and (max-height: 495px) and (max-width: 1140px) {
+
+      .w-front-view-transform,
+      .w-laying-down-view-transform,
+      .w-side-view-transform {
+        top: -90px;
       }
+    }
 
-      @media screen and (max-height: 525px)  and (max-width: 1140px) {
-        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
-          top: -80px;
-        }
+    @media screen and (max-height: 450px) and (max-width: 1140px) {
+
+      .w-front-view-transform,
+      .w-laying-down-view-transform,
+      .w-side-view-transform {
+        top: -100px;
       }
+    }
 
-      @media screen and (max-height: 495px)  and (max-width: 1140px) {
-        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
-          top: -90px;
-        }
+    @media screen and (max-height: 430px) and (max-width: 1140px) {
+
+      .w-front-view-transform,
+      .w-laying-down-view-transform,
+      .w-side-view-transform {
+        top: -110px;
       }
+    }
 
-      @media screen and (max-height: 450px)  and (max-width: 1140px) {
-        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
-          top: -100px;
-        }
+    @media screen and (max-height: 410px) and (max-width: 1140px) {
+
+      .w-front-view-transform,
+      .w-laying-down-view-transform,
+      .w-side-view-transform {
+        top: -120px;
       }
+    }
 
-      @media screen and (max-height: 430px)  and (max-width: 1140px) {
-        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
-          top: -110px;
-        }
+    @media screen and (max-height: 395px) and (max-width: 1140px) {
+
+      .w-front-view-transform,
+      .w-laying-down-view-transform,
+      .w-side-view-transform {
+        top: -130px;
       }
+    }
 
-      @media screen and (max-height: 410px)  and (max-width: 1140px) {
-        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
-          top: -120px;
-        }
+
+
+
+
+
+
+
+    @media screen and (max-width: 1440px) and (max-height: 900px) and (min-width: 1140px) {
+
+      .w-front-view-transform,
+      .w-laying-down-view-transform,
+      .w-side-view-transform {
+        top: 50%;
       }
+    }
+  </style>
+</head>
 
-      @media screen and (max-height: 395px)  and (max-width: 1140px) {
-        .w-front-view-transform,.w-laying-down-view-transform,.w-side-view-transform {
-          top: -130px;
-        }
-      }
-
-
-
-
-
-
-
-
-      @media screen and (max-width: 1440px) and (max-height: 900px) and (min-width: 1140px) {
-        .w-front-view-transform, .w-laying-down-view-transform, .w-side-view-transform {
-          top: 50%;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <section class="wrapper">
-      <div class="control-wrapper">
-        <div class="input-site">
-          <span>previewer.adalo.com/</span
-          ><input type="text" class="input" required />
-          <button class="submit">SUBMIT</button>
-        </div>
-        <div class="controls">
-          <div class="front-view active">Front</div>
-          <div class="laying-down-view">Laying</div>
-          <div class="side-view">Side</div>
-        </div>
+<body>
+  <section class="wrapper">
+    <div class="control-wrapper">
+      <div class="input-site">
+        <span>previewer.adalo.com/</span><input type="text" class="input" required />
+        <button class="submit">SUBMIT</button>
       </div>
-      <div class="perspective-phone w-front-view-transform">
-        <div class="phone front-view-transform">
-          <div class="front">
-            <img src="front.png" alt="" />
-            <div class="iframe-wrapper">
-              <iframe src="" frameborder="0"></iframe>
-            </div>
+      <div class="controls">
+        <div class="front-view active">Front</div>
+        <div class="laying-down-view">Laying</div>
+        <div class="side-view">Side</div>
+      </div>
+    </div>
+    <div class="perspective-phone w-front-view-transform">
+      <div class="phone front-view-transform">
+        <div class="front">
+          <img src="front.png" alt="" />
+          <div class="iframe-wrapper">
+            <iframe src="" frameborder="0"></iframe>
           </div>
-          <div class="back"></div>
-          <div class="left">
-            <img src="left.png" alt="" />
-            <div class="corner">
-              <div class="corner-1"></div>
-              <div class="corner-2"></div>
-              <div class="corner-3"></div>
-              <div class="corner-4"></div>
-              <div class="corner-5"></div>
-              <div class="corner-6"></div>
-              <div class="corner-7"></div>
-              <div class="corner-8"></div>
-              <div class="corner-9"></div>
-              <div class="corner-10"></div>
-              <div class="corner-11"></div>
-              <div class="corner-12"></div>
-              <div class="corner-13"></div>
-            </div>
-            <div
-              class="corner"
-              style="
+        </div>
+        <div class="back"></div>
+        <div class="left">
+          <img src="left.png" alt="" />
+          <div class="corner">
+            <div class="corner-1"></div>
+            <div class="corner-2"></div>
+            <div class="corner-3"></div>
+            <div class="corner-4"></div>
+            <div class="corner-5"></div>
+            <div class="corner-6"></div>
+            <div class="corner-7"></div>
+            <div class="corner-8"></div>
+            <div class="corner-9"></div>
+            <div class="corner-10"></div>
+            <div class="corner-11"></div>
+            <div class="corner-12"></div>
+            <div class="corner-13"></div>
+          </div>
+          <div class="corner" style="
                 top: 20px;
                 left: 0px;
                 transform: rotateX(168deg) rotateY(180deg) translateZ(2px)
                   translateX(-18px) translateY(-24px);
-              "
-            >
-              <div class="corner-1"></div>
-              <div class="corner-2"></div>
-              <div class="corner-3"></div>
-              <div class="corner-4"></div>
-              <div class="corner-5"></div>
-              <div class="corner-6"></div>
-              <div class="corner-7"></div>
-              <div class="corner-8"></div>
-              <div class="corner-9"></div>
-              <div class="corner-10"></div>
-              <div class="corner-11"></div>
-              <div class="corner-12"></div>
-            </div>
+              ">
+            <div class="corner-1"></div>
+            <div class="corner-fix"></div>
+            <div class="corner-2"></div>
+            <div class="corner-3"></div>
+            <div class="corner-4"></div>
+            <div class="corner-5"></div>
+            <div class="corner-6"></div>
+            <div class="corner-7"></div>
+            <div class="corner-8"></div>
+            <div class="corner-9"></div>
+            <div class="corner-10"></div>
+            <div class="corner-11"></div>
+            <div class="corner-12"></div>
           </div>
-          <div class="right">
-            <img src="right.png" alt="" />
-            <div
-              class="corner"
-              style="
+        </div>
+        <div class="right">
+          <img src="right.png" alt="" />
+          <div class="corner" style="
                 top: -10px;
                 left: 0px;
                 transform: rotateZ(180deg) translateX(-16px) translateY(-56px);
-              "
-            >
-              <div class="corner-1"></div>
-              <div class="corner-2"></div>
-              <div class="corner-3"></div>
-              <div class="corner-4"></div>
-              <div class="corner-5"></div>
-              <div class="corner-6"></div>
-              <div class="corner-7"></div>
-              <div class="corner-8"></div>
-              <div class="corner-9"></div>
-              <div class="corner-10"></div>
-              <div class="corner-11"></div>
-              <div class="corner-12"></div>
-            </div>
-            <div
-              class="corner"
-              style="left: -0px; transform: translateZ(1px); bottom: 48px"
-            >
-              <div class="corner-1"></div>
-              <div class="corner-2"></div>
-              <div class="corner-3"></div>
-              <div class="corner-4"></div>
-              <div class="corner-5"></div>
-              <div class="corner-6"></div>
-              <div class="corner-7"></div>
-              <div class="corner-8"></div>
-              <div class="corner-9"></div>
-              <div class="corner-10"></div>
-              <div class="corner-11"></div>
-              <div class="corner-12"></div>
-            </div>
+              ">
+            <div class="corner-1"></div>
+            <div class="corner-2"></div>
+            <div class="corner-3"></div>
+            <div class="corner-4"></div>
+            <div class="corner-5"></div>
+            <div class="corner-6"></div>
+            <div class="corner-7"></div>
+            <div class="corner-8"></div>
+            <div class="corner-9"></div>
+            <div class="corner-10"></div>
+            <div class="corner-11"></div>
+            <div class="corner-12"></div>
           </div>
-          <div class="top"></div>
-          <div class="bottom"><img src="bottom.png" alt="" /></div>
+          <div class="corner" style="left: -0px; transform: translateZ(1px); bottom: 48px">
+            <div class="corner-1"></div>
+            <div class="corner-2"></div>
+            <div class="corner-3"></div>
+            <div class="corner-4"></div>
+            <div class="corner-5"></div>
+            <div class="corner-6"></div>
+            <div class="corner-7"></div>
+            <div class="corner-8"></div>
+            <div class="corner-9"></div>
+            <div class="corner-10"></div>
+            <div class="corner-11"></div>
+            <div class="corner-12"></div>
+          </div>
         </div>
+        <div class="top"></div>
+        <div class="bottom"><img src="bottom.png" alt="" /></div>
       </div>
-    </section>
-    <script>
-      const controls = document.querySelector(".controls");
-      const phone = document.querySelector(".phone");
-      const phonewrapper = document.querySelector(".perspective-phone");
-      const inputBox = document.querySelector(".input-site");
-      const input = document.querySelector(".input-site input");
-      const iframe = document.querySelector("iframe");
-      let heightWindow = window.innerHeight;
-      let widthWindow = window.innerWidth;
-      let scale = 0;
-      let timeout = null;
+    </div>
+  </section>
+  <script>
+    const controls = document.querySelector(".controls");
+    const phone = document.querySelector(".phone");
+    const phonewrapper = document.querySelector(".perspective-phone");
+    const inputBox = document.querySelector(".input-site");
+    const input = document.querySelector(".input-site input");
+    const iframe = document.querySelector("iframe");
+    let heightWindow = window.innerHeight;
+    let widthWindow = window.innerWidth;
+    let scale = 0;
+    let timeout = null;
 
-      if (heightWindow < 960) {
-        if (heightWindow < 960 && widthWindow > 1140) {
-          scale = window.innerHeight / 1000;
-        } else if (heightWindow <= 800 && widthWindow <= 425) {
-          scale = window.innerHeight / 1400;
-        } else {
-          scale = window.innerHeight / 1300;
-        }
-        phone.setAttribute("style", "--scale-dynamic:" + scale);
+    if (heightWindow < 960) {
+      if (heightWindow < 960 && widthWindow > 1140) {
+        scale = window.innerHeight / 1000;
+      } else if (heightWindow <= 800 && widthWindow <= 425) {
+        scale = window.innerHeight / 1400;
+      } else {
+        scale = window.innerHeight / 1300;
       }
+      phone.setAttribute("style", "--scale-dynamic:" + scale);
+    }
 
-      iframe.setAttribute(
-        "src",
-        "https://previewer.adalo.com/preview/a758d618-0362-4e76-8f6b-103d0561dc1c?os=ios&offset_bottom=34&offset_top=44&w=375&h=812&cache=" +
+    iframe.setAttribute(
+      "src",
+      "https://previewer.adalo.com/preview/a758d618-0362-4e76-8f6b-103d0561dc1c?os=ios&offset_bottom=34&offset_top=44&w=375&h=812&cache=" +
+      randomNumber(0, 1000)
+    );
+
+    controls.addEventListener("click", (e) => {
+      controlsClicked(e);
+    });
+
+    inputBox.addEventListener("click", (e) => {
+      changeSite(e);
+    });
+
+    window.addEventListener("resize", () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(phoneSizedDynamically, 1500);
+    });
+
+    function randomNumber(min, max) {
+      return Math.floor(Math.random() * (max - min) + min);
+    }
+
+    function controlsClicked(e) {
+      if (!e.target.className.includes("controls")) {
+        let buttons = document.querySelectorAll(".controls div");
+        for (let u = 0; u < buttons.length; u++) {
+          buttons[u].classList.remove("active");
+        }
+        if (e.target.className.includes("front-view")) {
+          e.target.classList.add("active");
+          phone.className = "phone front-view-transform";
+          phonewrapper.className = "perspective-phone w-front-view-transform";
+        } else if (e.target.className.includes("laying-down-view")) {
+          e.target.classList.add("active");
+          phone.className = "phone laying-down-view-transform";
+          phonewrapper.className =
+            "perspective-phone w-laying-down-view-transform";
+        } else if (e.target.className.includes("side-view")) {
+          e.target.classList.add("active");
+          phone.className = "phone side-view-transform";
+          phonewrapper.className = "perspective-phone w-side-view-transform";
+        }
+      }
+    }
+
+    function changeSite(e) {
+      if (e.target.className.includes("submit")) {
+        iframe.setAttribute(
+          "src",
+          "https://previewer.adalo.com/preview/" +
+          input.value +
+          "?os=ios&offset_bottom=34&offset_top=44&w=375&h=812&cache=" +
           randomNumber(0, 1000)
-      );
-
-      controls.addEventListener("click", (e) => {
-        controlsClicked(e);
-      });
-
-      inputBox.addEventListener("click", (e) => {
-        changeSite(e);
-      });
-
-      window.addEventListener("resize", () => {
-        clearTimeout(timeout);
-        timeout = setTimeout(phoneSizedDynamically, 1500);
-      });
-
-      function randomNumber(min, max) {
-        return Math.floor(Math.random() * (max - min) + min);
+        );
       }
+    }
 
-      function controlsClicked(e) {
-        if (!e.target.className.includes("controls")) {
-          let buttons = document.querySelectorAll(".controls div");
-          for (let u = 0; u < buttons.length; u++) {
-            buttons[u].classList.remove("active");
-          }
-          if (e.target.className.includes("front-view")) {
-            e.target.classList.add("active");
-            phone.className = "phone front-view-transform";
-            phonewrapper.className = "perspective-phone w-front-view-transform";
-          } else if (e.target.className.includes("laying-down-view")) {
-            e.target.classList.add("active");
-            phone.className = "phone laying-down-view-transform";
-            phonewrapper.className =
-              "perspective-phone w-laying-down-view-transform";
-          } else if (e.target.className.includes("side-view")) {
-            e.target.classList.add("active");
-            phone.className = "phone side-view-transform";
-            phonewrapper.className = "perspective-phone w-side-view-transform";
-          }
-        }
+    function phoneSizedDynamically(e) {
+      heightWindow = window.innerHeight;
+      widthWindow = window.innerWidth;
+      if (heightWindow <= 960 && widthWindow >= 1140) {
+        scale = window.innerHeight / 960;
+      } else if (heightWindow <= 800 && widthWindow <= 425) {
+        scale = window.innerHeight / 1400;
+      } else {
+        scale = window.innerHeight / 1300;
       }
+      phone.setAttribute("style", "--scale-dynamic:" + scale);
+    }
+  </script>
+</body>
 
-      function changeSite(e) {
-        if (e.target.className.includes("submit")) {
-          iframe.setAttribute(
-            "src",
-            "https://previewer.adalo.com/preview/" +
-              input.value +
-              "?os=ios&offset_bottom=34&offset_top=44&w=375&h=812&cache=" +
-              randomNumber(0, 1000)
-          );
-        }
-      }
-
-      function phoneSizedDynamically(e) {
-        heightWindow = window.innerHeight;
-        widthWindow = window.innerWidth;
-        if (heightWindow <= 960 && widthWindow >= 1140) {
-          scale = window.innerHeight / 960;
-        } else if (heightWindow <= 800 && widthWindow <= 425) {
-          scale = window.innerHeight / 1400;
-        } else {
-          scale = window.innerHeight / 1300;
-        }
-        phone.setAttribute("style", "--scale-dynamic:" + scale);
-      }
-    </script>
-  </body>
 </html>
